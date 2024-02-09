@@ -1,0 +1,9 @@
+-- 코드를 입력하세요
+SELECT ORDER_ID, PRODUCT_ID, DATE_FORMAT(OUT_DATE, '%Y-%m-%d') AS OUT_DATE,
+    CASE 
+        WHEN DATEDIFF(OUT_DATE, '2022-05-01 00:00:00') > 0 THEN '출고대기'
+        WHEN ISNULL(OUT_DATE) THEN '출고미정'
+        ELSE '출고완료'
+    END AS 출고여부
+FROM FOOD_ORDER
+ORDER BY ORDER_ID;
